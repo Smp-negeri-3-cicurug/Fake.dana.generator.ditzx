@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
-    "skia-canvas": "^1.0.2"
+    "@napi-rs/canvas": "^0.1.53"
   },
   "engines": {
     "node": ">=18"
   }
 }
+
