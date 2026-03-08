@@ -1,0 +1,11 @@
+{
+  "name": "fake-dana-generator",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "skia-canvas": "^1.0.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
