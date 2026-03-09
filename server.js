@@ -45,7 +45,7 @@ async function generate(angka) {
   ctx.drawImage(logo, logoX, logoY, logoSize, logoSize)
 
   // Pakai JPEG quality 85 → jauh lebih kecil dari PNG
-  return await canvas.toBuffer('jpg', { quality: 85 })
+  return await canvas.toBuffer('jpg', { quality: 0.85 })
 }
 
 app.post('/api/generate', async (req, res) => {
@@ -71,3 +71,4 @@ app.post('/api/generate', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
+                
