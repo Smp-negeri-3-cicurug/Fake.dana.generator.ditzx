@@ -12,18 +12,19 @@ FontLibrary.use('CartoonVibes', path.join(__dirname, 'data/f5803c-1772975107907.
 app.use(express.json())
 app.use(express.static(__dirname))
 
-const TARGET = 2200 // Fixed output size
+const TARGET_W = 2200
 
 async function generate(angka) {
   const bg = await loadImage('https://raw.githubusercontent.com/uploader762/dat3/main/uploads/9c18e0-1772932032348.jpg')
   const logo = await loadImage('https://raw.githubusercontent.com/uploader762/dat3/main/uploads/d0f081-1772929197100.png')
 
-  const SCALE = TARGET / bg.width // Hitung scale dari ukuran asli bg
+  const SCALE = TARGET_W / bg.width
+  const TARGET_H = Math.round(bg.height * SCALE)
 
-  const canvas = new Canvas(TARGET, TARGET)
+  const canvas = new Canvas(TARGET_W, TARGET_H)
   const ctx = canvas.getContext('2d')
 
-  ctx.drawImage(bg, 0, 0, TARGET, TARGET)
+  ctx.drawImage(bg, 0, 0, TARGET_W, TARGET_H)
 
   ctx.font = `${Math.round(205 * SCALE)}px CartoonVibes`
   ctx.fillStyle = 'white'
@@ -44,7 +45,6 @@ async function generate(angka) {
 
   ctx.drawImage(logo, logoX, logoY, logoSize, logoSize)
 
-  // Pakai JPEG quality 85 → jauh lebih kecil dari PNG
   return await canvas.toBuffer('jpg', { quality: 0.85 })
 }
 
@@ -71,4 +71,5 @@ app.post('/api/generate', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
+                               
                 
